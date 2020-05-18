@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="博客的搭建 首先在官网下载node.js，下载长期支持版，因为hexo是需要nodejs来支持的，我默认安装在c盘，打开命令提示符，输入node -v，出现下面这个界面，说明安装成功。    注册GitHub 下载并安装Gitforwindows，我同样安装在c盘   注意这个界面应该选择第二个选项 打开命令提示符 输入Git  有这个错误，原因是环境变量没有配置好 1、找到你电脑上的git安装中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客搭建">
+<meta property="og:url" content="http://yoursite.com/2020/05/03/buildblog/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="博客的搭建 首先在官网下载node.js，下载长期支持版，因为hexo是需要nodejs来支持的，我默认安装在c盘，打开命令提示符，输入node -v，出现下面这个界面，说明安装成功。    注册GitHub 下载并安装Gitforwindows，我同样安装在c盘   注意这个界面应该选择第二个选项 打开命令提示符 输入Git  有这个错误，原因是环境变量没有配置好 1、找到你电脑上的git安装中">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C8b0dabcee4964ccc8445d121f31947e9%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cc012b873793440ca82cf1205ef20a896%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cbf6d825a80404dbe9b2a1350c9b72d9a%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C78c231077f464013a7866b6e4414bee9%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C66b5e0e98ddc4af8ac20e481e6634c47%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C0a2f729634e24146b9d33f9f0040a4de%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C43592fd92b2448dcb5fbbea2dfd3401c%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cb17f2eb710734f63bcbc02f8d7339f9c%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C60b17dc06b8541ba814a18a966bf7bb6%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Ca9c4ceccc4b84c00aa118b486e703741%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C1fd2ca55193e4a749a07b7f1e0896cb9%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C5912cd5142474dc3ba6515e06d75007e%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C34b3189f88ea4c40b279185206652ca2%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Ce6ded80a318f4d74ae97824fbddee2c8%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C64143e1f8f384d17976a90c6ad3a0629%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Caa0f6380f9a343708446a18805a29b8f%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cd1c939edb5824c25a5db73fe6078ff91%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Ca830dd80e160438f92231d8fa6f02c5f%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cb534c4a7930a43a7aae17ac256686325%5Cclipboard.png">
+<meta property="og:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C1af5717f0ba54616bd050d69d497fdf3%5Cclipboard.png">
+<meta property="og:updated_time" content="2020-05-18T08:03:54.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博客搭建">
+<meta name="twitter:description" content="博客的搭建 首先在官网下载node.js，下载长期支持版，因为hexo是需要nodejs来支持的，我默认安装在c盘，打开命令提示符，输入node -v，出现下面这个界面，说明安装成功。    注册GitHub 下载并安装Gitforwindows，我同样安装在c盘   注意这个界面应该选择第二个选项 打开命令提示符 输入Git  有这个错误，原因是环境变量没有配置好 1、找到你电脑上的git安装中">
+<meta name="twitter:image" content="d:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C8b0dabcee4964ccc8445d121f31947e9%5Cclipboard.png">
+  <link rel="canonical" href="http://yoursite.com/2020/05/03/buildblog/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>博客搭建 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      
+    
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/03/buildblog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Feng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            博客搭建
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-05-03 23:33:32" itemprop="dateCreated datePublished" datetime="2020-05-03T23:33:32+08:00">2020-05-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-18 16:03:54" itemprop="dateModified" datetime="2020-05-18T16:03:54+08:00">2020-05-18</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="博客的搭建"><a href="#博客的搭建" class="headerlink" title="博客的搭建"></a>博客的搭建</h1><ol>
+<li>首先在官网下载node.js，下载长期支持版，因为hexo是需要nodejs来支持的，我默认安装在c盘，打开命令提示符，输入node -v，出现下面这个界面，说明安装成功。</li>
+</ol>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C8b0dabcee4964ccc8445d121f31947e9%5Cclipboard.png" alt="img"></p>
+<ol>
+<li>注册GitHub</li>
+<li>下载并安装Gitforwindows，我同样安装在c盘</li>
+</ol>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cc012b873793440ca82cf1205ef20a896%5Cclipboard.png" alt="img"></p>
+<p>注意这个界面应该选择第二个选项</p>
+<p>打开命令提示符</p>
+<p>输入Git</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cbf6d825a80404dbe9b2a1350c9b72d9a%5Cclipboard.png" alt="img"></p>
+<p>有这个错误，原因是环境变量没有配置好</p>
+<p>1、找到你电脑上的git安装中bin的路径 C:\Program Files\Git\bin</p>
+<p>2、找到git安装路径中git-core的位置 C:\Program Files\Git\mingw64\libexec\git-core</p>
+<p>右键“计算机”-&gt;“属性”-&gt;“高级系统设置”-&gt;“环境变量”-&gt;在下方的“系统变量”中找到“path”-&gt;选中“path”并选择“编辑”-&gt;将1中找到的bin和git-core路径复制到其中-&gt;保存并退出。（注意，系统变量path的配置中，每个路径之间以分号;分割）</p>
+<p>重启cmd</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C78c231077f464013a7866b6e4414bee9%5Cclipboard.png" alt="img"></p>
+<p>出现这个界面说明安装好了，如果还不行就重启电脑</p>
+<ol>
+<li>双击打开git-bash.exe，输入ssh-keygen -t rsa -C “<a href="mailto:727684204@qq.com" target="_blank" rel="noopener">727684204@qq.com</a>“ ，然后一直回车，出现以下界面</li>
+</ol>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C66b5e0e98ddc4af8ac20e481e6634c47%5Cclipboard.png" alt="img"></p>
+<p>​    5.打开GitHub，点击头像，下面的设置</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C0a2f729634e24146b9d33f9f0040a4de%5Cclipboard.png" alt="img"></p>
+<p>找到ssh ，点击右上角new ssh key</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C43592fd92b2448dcb5fbbea2dfd3401c%5Cclipboard.png" alt="img"></p>
+<p>title随便写</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cb17f2eb710734f63bcbc02f8d7339f9c%5Cclipboard.png" alt="img"></p>
+<p>然后找到下面这个文件用记事本打开</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C60b17dc06b8541ba814a18a966bf7bb6%5Cclipboard.png" alt="img"></p>
+<p>将里面的秘钥粘贴到下面这个框里面，点击add ssh key</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Ca9c4ceccc4b84c00aa118b486e703741%5Cclipboard.png" alt="img"></p>
+<p>6.在d盘新建一个blog文件夹，同时在hexo的官网找到这一行安装命令</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C1fd2ca55193e4a749a07b7f1e0896cb9%5Cclipboard.png" alt="img"></p>
+<p>打开命令提示符，找到blog的路径，输入安装命令</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C5912cd5142474dc3ba6515e06d75007e%5Cclipboard.png" alt="img"></p>
+<p>安装好之后，输入hexo  init 你的博客名</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C34b3189f88ea4c40b279185206652ca2%5Cclipboard.png" alt="img"></p>
+<p>进入博客目录，执行安装</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Ce6ded80a318f4d74ae97824fbddee2c8%5Cclipboard.png" alt="img"></p>
+<p>设置5555为本地端口访问</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C64143e1f8f384d17976a90c6ad3a0629%5Cclipboard.png" alt="img"></p>
+<p>7.发布到GitHub</p>
+<p>打开config.yml文件</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Caa0f6380f9a343708446a18805a29b8f%5Cclipboard.png" alt="img"></p>
+<p>打开GitHub，找到仓库，使用ssh克隆，复制ssh秘钥，粘贴到config.yml的最后，</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cd1c939edb5824c25a5db73fe6078ff91%5Cclipboard.png" alt="img"></p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Ca830dd80e160438f92231d8fa6f02c5f%5Cclipboard.png" alt="img"></p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5Cb534c4a7930a43a7aae17ac256686325%5Cclipboard.png" alt="img"></p>
+<p>在命令行里提交命令</p>
+<p><img src="D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5Cqq445D5B62A3489AD23B3FA8D233A3253B%5C1af5717f0ba54616bd050d69d497fdf3%5Cclipboard.png" alt="img"></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/05/04/cocurrent/" rel="prev" title="并发与多线程">
+                  并发与多线程 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博客的搭建"><span class="nav-number">1.</span> <span class="nav-text">博客的搭建</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wu Feng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Feng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+      
+    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/muse.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
